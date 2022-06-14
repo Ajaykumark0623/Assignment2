@@ -1,0 +1,47 @@
+package beans;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Movies{
+
+	public static void main(String[] args) {
+		try {
+
+			Movie s=new Movie();
+			Scanner sc=new Scanner(System.in);
+			System.out.println("Enter Movie Name: ");
+			s.setMovieName(sc.next());
+			System.out.println("Enter Budget of Movie: ");
+			s.setBudget(sc.nextFloat());
+			System.out.println("Enter the Rating: ");
+			s.setRating(sc.nextFloat());
+			
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/training","root","pass@word1");
+			
+			
+			PreparedStatement ps=connection.prepareStatement("insert into Movie values(?,?,?)");
+			ps.setString(1,s.getMovieName());
+			ps.setFloat(2,s.getBudget());
+			ps.setFloat(3,s.getRating());
+			
+			
+		
+			ps.executeUpdate();
+			connection.close();
+			
+			} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+---------------------------------------------------
+Output:

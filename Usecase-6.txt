@@ -1,0 +1,116 @@
+package assignment2;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+public class JdbcAssign2 {
+
+	public static void main(String[] args) {
+		
+		try {
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/training","root","pass@word1");
+			Statement stm=connection.createStatement();
+
+		ResultSet rs =stm.executeQuery("select * from movie");
+			//Retrieval of Data from db
+		ArrayList<Movie> al=new ArrayList<Movie>();
+
+	while(rs.next()) {
+		Movie p=new Movie();
+
+		p.InsertRecord(rs.getString(1),rs.getDouble(2),rs.getDouble(3));
+		al.add(p);
+	}
+	al.forEach(o->{
+		o.DisplayInfo();});
+		
+			
+			connection.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+----------------------------------------------------------------
+package assignment2;
+
+public class Movie {
+String movieName;
+double  budget;
+double rating;
+public String getMovieName() {
+	return movieName;
+}
+public void setMovieName(String movieName) {
+	this.movieName = movieName;
+}
+public double getBudget() {
+	return budget;
+}
+public void setBudget(double budget) {
+	this.budget = budget;
+}
+public double getRating() {
+	return rating;
+}
+public void setRating(double rating) {
+	this.rating = rating;
+}
+public void DisplayInfo() {
+	System.out.println("Movie Name "+movieName);
+	System.out.println("Budget "+budget);
+	System.out.println("Rating "+rating);
+	
+}
+public void InsertRecord(String movieName, double budget, double rating) {
+	this.movieName=movieName;
+	this.budget=budget;
+	this.rating=rating;
+	
+	
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Output:
+Movie Name abc
+Budget 50.0
+Rating 5.0
+Movie Name bbc
+Budget 12.0
+Rating 4.5
+Movie Name cbc
+Budget 112.0
+Rating 3.3
+Movie Name avc
+Budget 10.0
+Rating 4.9
+Movie Name fgh
+Budget 20.0
+Rating 4.0
+Movie Name RRR
+Budget 1000.0
+Rating 4.9

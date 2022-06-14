@@ -1,0 +1,50 @@
+package utility;
+
+import java.util.Scanner;
+
+public class Count {
+
+ 
+	private static Scanner sc;
+	public static void main(String[] args) {
+		String str;
+		int i, alph, digit, spl,capital,small;
+		alph = digit = spl = capital=small=0;
+		char ch;
+		
+		sc= new Scanner(System.in);
+		System.out.print("\n Enter  String =  ");
+		str = sc.nextLine();
+		
+		for(i = 0; i <str.length(); i++)
+		{
+			ch = str.charAt(i);
+			if(ch >= 'a' && ch <= 'z'  ) {
+				small++;
+			}
+			else if(ch >= '0' && ch <= '9') {
+				digit++;
+			}
+			else if(ch>='A'&&ch<='Z'){
+				capital++;
+			}
+			else {spl++;}
+			
+		}		
+		System.out.println("\nNumber of Alphabet Characters  =  " + small);
+		System.out.println("Number of Digit Characters     =  " + digit);
+		System.out.println("Number of Special Characters   =  " + spl);
+		System.out.println("Number of Capitals  =  " + capital);
+
+	}
+
+}
+---------------------------------------------------------------
+output:
+
+ Enter  String =  Harsha@.Vardhan@gmail12.COM
+
+Number of Alphabet Characters  =  16
+Number of Digit Characters     =  2
+Number of Special Characters   =  4
+Number of Capitals  =  5

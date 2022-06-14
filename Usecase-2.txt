@@ -1,0 +1,51 @@
+package beans;
+
+public class Movie {
+String MovieName;
+float Budget;
+float Rating;
+public String getMovieName() {
+	return MovieName;
+}
+public void setMovieName(String movieName) {
+	MovieName = movieName;
+}
+public float getBudget() {
+	return Budget;
+}
+public void setBudget(float budget) {
+	Budget = budget;
+}
+public float getRating() {
+	return Rating;
+}
+public void setRating(float rating) {
+	Rating = rating;
+}
+public void displayInfo() {
+	System.out.println("Movie Name:\n"+ MovieName +"Budget:\n" +Budget+ "Rating:\n" +Rating);
+}
+}
+---------------------------------------------------------
+
+package beans;
+
+
+
+import assignment2.Movie;
+
+public class Useclass2 extends Movie{
+	public static void main(String args[]) {
+		Movie de=new Movie();
+		de.setMovieName("Raja Krishna");
+		de.setBudget(100);
+		de.setRating(3.5f);
+		de.DisplayInfo();
+	}
+
+}
+-----------------------------------
+Output:
+Movie Name Raja Krishna
+Budget 100.0
+Rating 3.5
